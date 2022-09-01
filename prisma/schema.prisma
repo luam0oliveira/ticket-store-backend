@@ -6,6 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("SQLITE_URL")
+}
+
+model Ticket {
+  id       Int    @id @default(autoincrement())
+  name     String
+  price    Float
+  quantity Int
+}
+
+model Event {
+  id   Int      @id @default(autoincrement())
+  name String   @unique
+  date DateTime
 }
