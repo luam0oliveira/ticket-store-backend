@@ -15,10 +15,21 @@ model Ticket {
   name     String
   price    Float
   quantity Int
+  event    Event  @relation(fields: [eventId], references: [id])
+  eventId  Int
 }
 
 model Event {
-  id   Int      @id @default(autoincrement())
-  name String   @unique
-  date DateTime
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  date      DateTime
+  tickets   Ticket[]
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId Int
+}
+
+model Company {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Event Event[]
 }
