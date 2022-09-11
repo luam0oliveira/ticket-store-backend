@@ -1,4 +1,4 @@
-interface ITicketRepositoryCreate {
+interface ICreateTicketDTO {
   name: string;
   price: number;
   quantity: number;
@@ -6,4 +6,4 @@ interface ITicketRepositoryCreate {
   eventId: number;
 }
 
-export { ITicketRepositoryCreate };
+export { ICreateTicketDTO };

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { CreateCompanyController } from "../modules/ticket/useCases/createCompany/CreateCompanyController";
+import { CreateCompanyController } from "../modules/company/useCases/createCompany/CreateCompanyController";
 
 const eventRoutes = Router();
 
