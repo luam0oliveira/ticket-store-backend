@@ -12,3 +12,4 @@ class CreateCompanyController {
 }
 
 export { CreateCompanyController };
+export default new CreateCompanyController();

@@ -5,11 +5,11 @@ import { DeleteCompanyUseCase } from "./DeleteCompanyUseCase";
 
 class DeleteCompanyController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
+    const id = Number(request.params.id);
 
     const deleteCompanyUseCase = container.resolve(DeleteCompanyUseCase);
 
-    await deleteCompanyUseCase.execute(id);
+    await deleteCompanyUseCase.execute({ id });
 
     return response.status(201).json("Operation successful");
   }

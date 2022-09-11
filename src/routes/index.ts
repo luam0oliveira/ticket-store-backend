@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { eventRoutes } from "./event.routes";
+import { companyRoutes } from "./company.routes";
 
 const routes = Router();
 
-routes.use("/event", eventRoutes);
+routes.use("/companies", companyRoutes);
 
 export { routes };

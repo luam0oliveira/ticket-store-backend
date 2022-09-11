@@ -11,6 +11,10 @@ class CompanyRepository implements ICompanyRepository {
     return ticket;
   }
 
+  async getAllCompanies(): Promise<Company[]> {
+    return await prismaClient.company.findMany();
+  }
+
   async delete({ id }: IDeleteCompanyDTO): Promise<void> {
     await prismaClient.company.delete({ where: { id } });
   }
