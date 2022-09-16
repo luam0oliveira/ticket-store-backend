@@ -1,11 +1,11 @@
 import { container } from "tsyringe";
 
-import { ICompanyRepository } from "../../modules/company/repositories/ICompanyRepository";
-import { CompanyRepository } from "../../modules/company/repositories/implementations/CompanyRepository";
-import { IEventRepository } from "../../modules/event/repositories/IEventRepository";
-import { EventRepository } from "../../modules/event/repositories/implementations/EventRepository";
-import { TicketRepository } from "../../modules/ticket/repositories/Implementations/TicketRepository";
-import { ITicketRepository } from "../../modules/ticket/repositories/ITicketRepository";
+import { CompanyRepository } from "@modules/ticket/infra/repositories/CompanyRepository";
+import { EventRepository } from "@modules/ticket/infra/repositories/EventRepository";
+import { TicketRepository } from "@modules/ticket/infra/repositories/TicketRepository";
+import { ICompanyRepository } from "@modules/ticket/repositories/ICompanyRepository";
+import { IEventRepository } from "@modules/ticket/repositories/IEventRepository";
+import { ITicketRepository } from "@modules/ticket/repositories/ITicketRepository";
 
 container.registerSingleton<ICompanyRepository>(
   "CompanyRepository",

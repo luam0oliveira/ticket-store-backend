@@ -1,15 +1,10 @@
+import { ICreateTicketDTO } from "@modules/ticket/dtos/ICreateTicketDTO";
 import { Ticket } from "@prisma/client";
-
-import { ICreateTicketDTO } from "../dtos/ICreateTicketDTO";
-import { IDeleteTicketDTO } from "../dtos/IDeleteTicketDTO";
-import { IGetAllTicketsFromEventDTO } from "../dtos/IGetAllTicketsFromEventDTO";
 
 interface ITicketRepository {
   create({ eventId, name, price, quantity }: ICreateTicketDTO): Promise<void>;
-  getAllTicketsFromEvent(
-    eventId: IGetAllTicketsFromEventDTO
-  ): Promise<Ticket[]>;
-  delete(ticketId: IDeleteTicketDTO): Promise<void>;
+  getAllTicketsFromEvent(eventId: number): Promise<Ticket[]>;
+  delete(ticketId: number): Promise<void>;
 }
 
 export { ITicketRepository };
