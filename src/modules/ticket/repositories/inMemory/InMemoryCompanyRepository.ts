@@ -1,6 +1,7 @@
 import { ICreateCompanyDTO } from "@modules/ticket/dtos/ICreateCompanyDTO";
 import { ICompanyRepository } from "@modules/ticket/repositories/ICompanyRepository";
 import { Company } from "@prisma/client";
+import { AppError } from "@shared/error/AppError";
 
 class InMemoryCompanyRepository implements ICompanyRepository {
   private companies: Company[] = [];
@@ -17,11 +18,32 @@ class InMemoryCompanyRepository implements ICompanyRepository {
 
     return company;
   }
-  getAllCompanies(): Promise<Company[]> {
-    throw new Error("Method not implemented.");
+
+  async getAllCompanies(): Promise<Company[]> {
+    return this.companies;
   }
-  delete(id: number): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async delete(id: number): Promise<void> {
+    const companyIndex = this.companies.findIndex(
+      (company) => company.id === id
+    );
+
+    if (companyIndex === -1) {
+      throw new AppError(404, "This company id not exists.");
+    }
+
+    this.companies = [
+      ...this.companies.slice(0, companyIndex),
+      ...this.companies.slice(companyIndex + 1),
+    ];
+  }
+
+  async getCompanyByName(name: string): Promise<Company[] | undefined | null> {
+    const company = this.companies.filter((company) =>
+      company.name.includes(name)
+    );
+
+    return company;
   }
 }
 

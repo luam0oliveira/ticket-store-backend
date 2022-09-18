@@ -12,8 +12,8 @@ class DeleteCompanyUseCase {
     //
   }
 
-  async execute({ id }: IDeleteCompanyDTO) {
-    await this.companyRepository.delete({ id });
+  async execute(id: number) {
+    await this.companyRepository.delete(id);
   }
 }
 export { DeleteCompanyUseCase };
