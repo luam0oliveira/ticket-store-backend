@@ -54,7 +54,7 @@ describe("Delete company", () => {
     expect(companies).toEqual([]);
   });
 
-  it("should not be able to delete a category if it not exists", () => {
+  it("should not be able to delete a nonexistent category", () => {
     expect(async () => {
       await deleteCompanyUseCase.execute(0);
     }).rejects.toBeInstanceOf(AppError);

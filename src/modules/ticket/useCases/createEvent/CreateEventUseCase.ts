@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import { ICreateEventDTO } from "@modules/ticket/dtos/ICreateEventDTO";
 import { IEventRepository } from "@modules/ticket/repositories/IEventRepository";
+import { AppError } from "@shared/error/AppError";
 
 @injectable()
 class CreateEventUseCase {
@@ -13,7 +14,13 @@ class CreateEventUseCase {
   }
 
   async execute({ companyId, date, name }: ICreateEventDTO) {
-    this.eventRepository.create({ companyId, date, name });
+    const eventExists = await this.eventRepository.getEventByName(name);
+
+    if (eventExists?.length && eventExists.length !== -1) {
+      throw new AppError(400, "Event already exists.");
+    }
+
+    return await this.eventRepository.create({ companyId, date, name });
   }
 }
 
