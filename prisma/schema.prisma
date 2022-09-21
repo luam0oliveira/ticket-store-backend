@@ -17,6 +17,8 @@ model Ticket {
   quantity Int
   event    Event  @relation(fields: [eventId], references: [id])
   eventId  Int
+
+  @@unique([eventId, name])
 }
 
 model Event {
