@@ -9,7 +9,7 @@ class DeleteCompanyController {
 
     const deleteCompanyUseCase = container.resolve(DeleteCompanyUseCase);
 
-    await deleteCompanyUseCase.execute({ id });
+    await deleteCompanyUseCase.execute(id);
 
     return response.status(201).json("Operation successful");
   }

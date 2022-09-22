@@ -18,9 +18,6 @@ class CreateTicketUseCase {
       ticketData.eventId
     );
 
-    console.log(ticketExists?.name);
-    console.log("kkkkk");
-
     if (ticketExists?.name) {
       throw new AppError(400, "Ticket already exists!");
     }

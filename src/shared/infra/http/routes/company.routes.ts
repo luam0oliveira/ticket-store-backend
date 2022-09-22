@@ -1,15 +1,15 @@
-// import { Router } from "express";
+import { Router } from "express";
 
-// import deleteCompanyController from "@modules/company/useCases/deleteCompany/DeleteCompanyController";
-// import getAllCompaniesController from "@modules/company/useCases/getAllCompanies/GetAllCompaniesController";
-// import createCompanyController from "@modules/ticket/useCases/createCompany/CreateCompanyController";
+import createCompanyController from "@modules/ticket/useCases/createCompany/CreateCompanyController";
+import deleteCompanyController from "@modules/ticket/useCases/deleteCompany/DeleteCompanyController";
+import getAllCompaniesController from "@modules/ticket/useCases/getAllCompanies/GetAllCompaniesController";
 
-// const companyRoutes = Router();
+const companyRoutes = Router();
 
-// companyRoutes.get("/", getAllCompaniesController.handle);
+companyRoutes.get("/", getAllCompaniesController.handle);
 
-// companyRoutes.post("/", createCompanyController.handle);
+companyRoutes.post("/", createCompanyController.handle);
 
-// companyRoutes.delete("/:id", deleteCompanyController.handle);
+companyRoutes.delete("/:id", deleteCompanyController.handle);
 
-// export { companyRoutes };
+export { companyRoutes };

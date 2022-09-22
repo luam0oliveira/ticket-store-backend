@@ -9,6 +9,7 @@ interface ITicketRepository {
     name: string,
     eventId: number
   ): Promise<Ticket | undefined | null>;
+  getTicketById(id: number): Promise<Ticket | undefined | null>;
 }
 
 export { ITicketRepository };

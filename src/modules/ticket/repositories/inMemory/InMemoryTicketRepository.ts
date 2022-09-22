@@ -6,6 +6,9 @@ import { ITicketRepository } from "../ITicketRepository";
 class InMemoryTicketRepository implements ITicketRepository {
   tickets: Ticket[] = [];
 
+  async getTicketById(id: number): Promise<Ticket | null | undefined> {
+    return this.tickets.find((ticket) => ticket.id === id);
+  }
   async getTicketByName(
     name: string,
     eventId: number
@@ -27,11 +30,19 @@ class InMemoryTicketRepository implements ITicketRepository {
 
     return ticketObject;
   }
-  getAllTicketsFromEvent(eventId: number): Promise<Ticket[]> {
-    throw new Error("Method not implemented.");
+  async getAllTicketsFromEvent(eventId: number): Promise<Ticket[]> {
+    const tickets = this.tickets.filter((ticket) => ticket.eventId === eventId);
+    return tickets;
   }
-  delete(ticketId: number): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async delete(ticketId: number): Promise<void> {
+    const eventIndex = this.tickets.findIndex(
+      (ticket) => ticket.id === ticketId
+    );
+    this.tickets = [
+      ...this.tickets.slice(0, eventIndex - 1),
+      ...this.tickets.slice(eventIndex + 1),
+    ];
   }
 }
 

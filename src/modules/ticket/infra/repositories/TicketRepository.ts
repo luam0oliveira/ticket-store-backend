@@ -4,6 +4,10 @@ import { Ticket } from "@prisma/client";
 import { prismaClient } from "@shared/infra/prisma/client";
 
 class TicketRepository implements ITicketRepository {
+  async getTicketById(id: number): Promise<Ticket | null | undefined> {
+    const ticket = await prismaClient.ticket.findUnique({ where: { id } });
+    return ticket;
+  }
   async getTicketByName(
     name: string,
     eventId: number
