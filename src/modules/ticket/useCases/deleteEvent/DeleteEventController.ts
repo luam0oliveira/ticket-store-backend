@@ -9,7 +9,7 @@ class DeleteEventController {
 
     const deleteEventUseCase = container.resolve(DeleteEventUseCase);
 
-    await deleteEventUseCase.execute({ id });
+    await deleteEventUseCase.execute(id);
 
     return response.status(204).json();
   }

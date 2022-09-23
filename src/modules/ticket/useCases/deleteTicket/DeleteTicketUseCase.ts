@@ -12,6 +12,7 @@ class DeleteTicketUseCase {
   }
   async execute(id: number) {
     const ticketExists = await this.ticketRepository.getTicketById(id);
+    console.log(ticketExists);
 
     if (!ticketExists?.name) {
       throw new AppError(404, "Ticket not exists!");

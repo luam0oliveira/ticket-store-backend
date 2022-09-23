@@ -1,6 +1,5 @@
 import { inject, injectable } from "tsyringe";
 
-import { IGetAllEvents } from "@modules/ticket/dtos/IGetAllEvents";
 import { IEventRepository } from "@modules/ticket/repositories/IEventRepository";
 
 @injectable()
@@ -12,8 +11,8 @@ class GetAllEventsUseCase {
     //
   }
 
-  async execute({ companyId }: IGetAllEvents) {
-    return await this.eventRepository.getAllEvents({ companyId });
+  async execute(companyId: number) {
+    return await this.eventRepository.getAllEvents(companyId);
   }
 }
 

@@ -20,7 +20,11 @@ class CreateEventUseCase {
       throw new AppError(400, "Event already exists.");
     }
 
-    return await this.eventRepository.create({ companyId, date, name });
+    return await this.eventRepository.create({
+      companyId,
+      date: new Date(date),
+      name,
+    });
   }
 }
 

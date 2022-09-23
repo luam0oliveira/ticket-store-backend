@@ -13,7 +13,9 @@ class EventRepository implements IEventRepository {
   }
 
   async getAllEvents(companyId: number): Promise<Event[]> {
-    return await prismaClient.event.findMany({ where: { companyId } });
+    const tickets = await prismaClient.event.findMany({ where: { companyId } });
+
+    return tickets;
   }
 
   async delete(id: number): Promise<void> {
