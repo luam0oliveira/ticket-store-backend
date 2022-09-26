@@ -5,9 +5,9 @@ import { GetAllTicketsUseCase } from "./GetAllTicketsUseCase";
 
 class GetAllTicketsController {
   async handle(request: Request, response: Response) {
-    const event_id = Number(request.params.event_id);
+    const eventId = Number(request.params.eventId);
     const getAllTicketsUseCase = container.resolve(GetAllTicketsUseCase);
-    const tickets = getAllTicketsUseCase.execute(event_id);
+    const tickets = await getAllTicketsUseCase.execute(eventId);
     return response.status(201).json(tickets);
   }
 }

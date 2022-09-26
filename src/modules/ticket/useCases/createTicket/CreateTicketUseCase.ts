@@ -13,6 +13,7 @@ class CreateTicketUseCase {
     //
   }
   async execute(ticketData: ICreateTicketDTO): Promise<Ticket> {
+    console.log(ticketData);
     const ticketExists = await this.ticketRepository.getTicketByName(
       ticketData.name,
       ticketData.eventId

@@ -7,9 +7,9 @@ import { CreateTicketUseCase } from "./CreateTicketUseCase";
 
 class CreateTicketController {
   async handle(request: Request, response: Response) {
-    const ticket: ICreateTicketDTO = request.body.ticket;
+    const ticket: ICreateTicketDTO = request.body;
     const createTicketUseCase = container.resolve(CreateTicketUseCase);
-    const created_ticket = createTicketUseCase.execute(ticket);
+    const created_ticket = await createTicketUseCase.execute(ticket);
     return response.status(201).json(created_ticket);
   }
 }

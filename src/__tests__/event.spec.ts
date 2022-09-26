@@ -104,3 +104,28 @@ describe("Find all events", () => {
     expect((await eventRepository.getAllEvents(1)).length).toEqual(2);
   });
 });
+
+describe("Find event by name", () => {
+  beforeEach(async () => {
+    eventRepository = new InMemoryEventRepository();
+    deleteEventUseCase = new DeleteEventUseCase(eventRepository);
+    companyRepository = new InMemoryCompanyRepository();
+    const company: ICreateCompanyDTO = { name: "Company test" };
+
+    await companyRepository.create(company);
+  });
+
+  it("should be able to find all events", async () => {
+    const event: ICreateEventDTO = {
+      companyId: 1,
+      date: new Date("Tue Sep 20 2022 04:49:36 GMT+0000"),
+      name: "Event test",
+    };
+
+    await eventRepository.create(event);
+
+    const events = await eventRepository.getEventByName("Event test");
+
+    expect(events?.length).toEqual(1);
+  });
+});
