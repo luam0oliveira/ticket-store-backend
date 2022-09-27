@@ -5,10 +5,10 @@ import { DeleteTicketUseCase } from "./DeleteTicketUseCase";
 
 class DeleteTicketController {
   async handle(request: Request, response: Response) {
-    const id = Number(request.params.id);
+    const ticketId = Number(request.params.ticketId);
     const deleteTicketUseCase = container.resolve(DeleteTicketUseCase);
-    deleteTicketUseCase.execute(id);
-    return response.status(204);
+    await deleteTicketUseCase.execute(ticketId);
+    return response.status(204).json();
   }
 }
 
