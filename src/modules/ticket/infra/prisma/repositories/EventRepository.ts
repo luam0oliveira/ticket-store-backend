@@ -1,8 +1,8 @@
 import { Event } from "@prisma/client";
 import { prismaClient } from "@shared/infra/prisma/client";
 
-import { ICreateEventDTO } from "../../dtos/ICreateEventDTO";
-import { IEventRepository } from "../../repositories/IEventRepository";
+import { ICreateEventDTO } from "../../../dtos/ICreateEventDTO";
+import { IEventRepository } from "../../../repositories/IEventRepository";
 
 class EventRepository implements IEventRepository {
   async getEventById(eventId: number): Promise<Event | null | undefined> {

@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 
 import { ICreateUserDTO } from "@modules/user/dtos/ICreateUserDTO";
 import { IUserRepository } from "@modules/user/repositories/IUserRepositories";
+import { AppError } from "@shared/error/AppError";
 
 @injectable()
 class CreateUserUseCase {
@@ -13,6 +14,12 @@ class CreateUserUseCase {
   }
 
   async execute({ email, password }: ICreateUserDTO) {
+    const userExists = await this.userRepository.findByEmail(email);
+
+    if (userExists?.email) {
+      throw new AppError(400, "User already exists.");
+    }
+
     const passwordHashed = await hash(password, 8);
 
     const user = await this.userRepository.create({
