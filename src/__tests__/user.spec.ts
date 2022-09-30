@@ -18,6 +18,7 @@ describe("Create User", () => {
   });
   it("should be able to create a new user", async () => {
     const user: ICreateUserDTO = {
+      name: "test",
       email: "user@test.com",
       password: "password",
     };
@@ -30,6 +31,7 @@ describe("Create User", () => {
   it("should not be able to create a new user with duplicated email", () => {
     expect(async () => {
       const user: ICreateUserDTO = {
+        name: "test",
         email: "user@test.com",
         password: "password",
       };
@@ -48,6 +50,7 @@ describe("Delete User", () => {
 
   it("should be able to delete a user", async () => {
     const user: ICreateUserDTO = {
+      name: "test",
       email: "user@test.com",
       password: "password",
     };
@@ -74,6 +77,7 @@ describe("Get All Users", () => {
 
   it("should be able to delete a user", async () => {
     const user: ICreateUserDTO = {
+      name: "test",
       email: "user@test.com",
       password: "password",
     };

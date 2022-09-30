@@ -13,7 +13,7 @@ class CreateUserUseCase {
     //
   }
 
-  async execute({ email, password }: ICreateUserDTO) {
+  async execute({ name, email, password }: ICreateUserDTO) {
     const userExists = await this.userRepository.findByEmail(email);
 
     if (userExists?.email) {
@@ -23,6 +23,7 @@ class CreateUserUseCase {
     const passwordHashed = await hash(password, 8);
 
     const user = await this.userRepository.create({
+      name,
       email,
       password: passwordHashed,
     });
