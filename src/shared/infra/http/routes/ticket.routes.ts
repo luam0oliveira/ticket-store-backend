@@ -4,9 +4,15 @@ import createTicketController from "@modules/ticket/useCases/createTicket/Create
 import deleteTicketController from "@modules/ticket/useCases/deleteTicket/DeleteTicketController";
 import getAllTicketsController from "@modules/ticket/useCases/getAllTickets/GetAllTicketsController";
 
+import { ensureAuthentication } from "../middlewares/ensureAuthenticate";
+
 const ticketRoutes = Router();
 
-ticketRoutes.get("/:ticketId", getAllTicketsController.handle);
+ticketRoutes.get(
+  "/:ticketId",
+  ensureAuthentication,
+  getAllTicketsController.handle
+);
 ticketRoutes.post("/", createTicketController.handle);
 ticketRoutes.delete("/:ticketId", deleteTicketController.handle);
 
